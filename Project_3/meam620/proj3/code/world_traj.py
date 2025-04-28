@@ -24,7 +24,7 @@ class WorldTraj(object):
         #     self.v_max =  3.1
         else:
             self.margin = 0.53
-            self.v_max = 2
+            self.v_max = 3.5
 
         #     self.margin = 0.5 
         #     self.v_max = 3
