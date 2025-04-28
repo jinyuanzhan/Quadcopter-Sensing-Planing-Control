@@ -33,7 +33,7 @@ np.random.seed(0)
 
 # Load the test example.
 
-NUM = 2
+NUM = 3
 
 
 if NUM == 1:
