@@ -103,6 +103,6 @@ def add_midpoints(waypoints, max_seg_length):
 def convert_path_to_waypoints(path, resolution, margin):
     epsilon = 0.2
     waypoints = douglas_peucker(path, epsilon)
-    max_seg_length = 2
+    max_seg_length = 3
     waypoints_with_midpoints = add_midpoints(waypoints, max_seg_length)
     return waypoints_with_midpoints

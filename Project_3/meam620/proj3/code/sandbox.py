@@ -77,7 +77,7 @@ print("initial_state = ", initial_state)
 
 vio = Vio()
 
-visualize_stereo_features = True
+visualize_stereo_features = False
 if visualize_stereo_features:
     plt.show()
     pass

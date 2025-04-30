@@ -24,7 +24,7 @@ class WorldTraj(object):
         #     self.v_max =  3.1
         else:
             self.margin = 0.53
-            self.v_max = 3.5
+            self.v_max = 1.9
 
         #     self.margin = 0.5 
         #     self.v_max = 3
@@ -498,11 +498,6 @@ class WorldTraj(object):
                 x_dddot[d] = 6*a3 + 24*a4*tau + 60*a5*tau**2
                 x_ddddot[d] = 24*a4 + 120*a5*tau
         
-        # if np.linalg.norm(x_dot[:2]) > 1e-3:  # 速度不为0时才更新yaw
-        #     yaw = np.arctan2(x_dot[1], x_dot[0])
-        #     # 这里简单起见，yaw_dot仍然设为0（如果要，可以进一步推导出来）
-        # else:
-        #     yaw = yaw 
         
         flat_output = {
             'x': x,
