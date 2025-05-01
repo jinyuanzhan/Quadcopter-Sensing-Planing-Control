@@ -91,7 +91,6 @@ def graph_search(occ_map, resolution, margin, start, goal,goal_tolerance ,astar)
         
         goal_distance = np.linalg.norm(get_center(current) - goal_center)
         if goal_distance <= goal_tolerance and not occ_map.is_occupied_index(current):
-           
             goal_index = current 
             break
         # ----------------
