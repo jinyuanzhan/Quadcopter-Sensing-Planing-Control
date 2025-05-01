@@ -36,7 +36,7 @@ np.random.seed(0)
 # filename = 'test_maze.json'
 
 
-NUM = 1
+NUM = 2
 if NUM == 1:
     filename = 'test_maze.json'
 elif NUM == 2:
@@ -219,12 +219,13 @@ if hasattr(my_world_traj, 'path'):
         #world.draw_line(ax, my_world_traj.pre_path, color='green', linewidth=1)
 else:
     print("Have you set \'self.path\' in WorldTraj.__init__?")
-if hasattr(my_world_traj, 'points'):
-    if my_world_traj.points is not None:
-        world.draw_points(ax, my_world_traj.points, color='purple', markersize=8)
-        #world.draw_points(ax, my_world_traj.pre_points, color='green', markersize=8)
-else:
-    print("Have you set \'self.points\' in WorldTraj.__init__?")
+
+# if hasattr(my_world_traj, 'points'):
+#     if my_world_traj.points is not None:
+#         world.draw_points(ax, my_world_traj.points, color='purple', markersize=8)
+#         #world.draw_points(ax, my_world_traj.pre_points, color='green', markersize=8)
+# else:
+#     print("Have you set \'self.points\' in WorldTraj.__init__?")
 
 if hasattr(my_world_traj, 'waypoints_list'):
     if my_world_traj.waypoints_list:
@@ -242,7 +243,7 @@ world.draw_line(ax, flat['x'], color='black', linewidth=2)
 #     loc='upper right')
 ax.legend(handles=[
     Line2D([], [], color='red', linewidth=1, label='Dense A* Path'),
-    Line2D([], [], color='purple', linestyle='', marker='.', markersize=8, label='Sparse Waypoints'),
+    # Line2D([], [], color='purple', linestyle='', marker='.', markersize=8, label='Sparse Waypoints'),
     Line2D([], [], color='black', linewidth=2, label='Trajectory'),
     Line2D([], [], color='red', linestyle='', marker='o', markersize=10, label='Local Goal'),
     Line2D([], [], color='orange', linestyle='', marker='.', markersize=6, label='Sparse Waypoints (each local replanning)')],

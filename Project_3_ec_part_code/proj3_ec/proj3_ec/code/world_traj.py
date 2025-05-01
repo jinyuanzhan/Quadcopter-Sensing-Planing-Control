@@ -162,62 +162,61 @@ class WorldTraj(object):
         return
 
 
-    # def crop_local_goal(self, start):
-    #     """
-    #     Given local start, get a straight line position as the cropped local goal 
-    #     and end up with the global goal
-        
-    #     Inputs
-    #         start, xyz position in meters, shape=(3,)        
-        
-    #     Outputs
-    #         goal,  xyz position in meters, shape=(3,)  
-    #     """
-
-    #     # You can also improve this function with local goal selection strategies
-
-    #     dist = np.linalg.norm(self.global_goal - start)
-    #     if dist <= self.planning_horizon:
-    #         print("reaching global goal!")
-    #         goal = self.global_goal
-    #     else:
-    #         # local goal here
-    #         goal = start + (self.planning_horizon / dist)  * (self.global_goal - start)
-    #     return goal
-
-
     def crop_local_goal(self, start):
         """
-        Generate a cropped local goal that is guaranteed to be inside the current local map.
+        Given local start, get a straight line position as the cropped local goal 
+        and end up with the global goal
         
-        Inputs:
-            start: Current position, shape=(3,)
-        Output:
-            goal: Cropped local goal, shape=(3,)
+        Inputs
+            start, xyz position in meters, shape=(3,)        
+        
+        Outputs
+            goal,  xyz position in meters, shape=(3,)  
         """
 
-        dist = np.linalg.norm(self.global_goal - start)
-        
-        # First try to use full planning horizon
-        planning_range = self.planning_horizon
+        # You can also improve this function with local goal selection strategies
 
-        # Clamp to global goal if it's already close enough
-        if dist <= planning_range:
+        dist = np.linalg.norm(self.global_goal - start)
+        if dist <= self.planning_horizon:
             print("reaching global goal!")
             goal = self.global_goal
         else:
-            # Try to shrink horizon until goal is inside local map bounds
-            direction = (self.global_goal - start) / dist
-            for _ in range(10):  # Try up to 10 times
-                goal = start + direction * planning_range
-                if self.local_occ_map.is_in_bounds_metric(goal):
-                    return goal
-                planning_range *= 0.8  # Shrink distance
-            # Fallback: return current position (safe but not moving)
-            print("[crop_local_goal] Failed to find valid goal in map, fallback to current pos")
-            goal = start
-
+            # local goal here
+            goal = start + (self.planning_horizon / dist)  * (self.global_goal - start)
         return goal
+
+
+    # def crop_local_goal(self, start):
+    #     """
+    #     Generate a cropped local goal that is guaranteed to be inside the current local map.
+        
+    #     Inputs:
+    #         start: Current position, shape=(3,)
+    #     Output:
+    #         goal: Cropped local goal, shape=(3,)
+    #     """
+
+    #     dist = np.linalg.norm(self.global_goal - start)
+        
+    #     # First try to use full planning horizon
+    #     planning_range = self.planning_horizon
+
+    #     # Clamp to global goal if it's already close enough
+    #     if dist <= planning_range:
+    #         print("reaching global goal!")
+    #         goal = self.global_goal
+    #     else:
+    #         # Try to shrink horizon until goal is inside local map bounds
+    #         direction = (self.global_goal - start) / dist
+    #         for _ in range(10):  # Try up to 10 times
+    #             goal = start + direction * planning_range
+    #             if self.local_occ_map.is_valid_index(self.local_occ_map.metric_to_index(goal)):
+    #                 return goal
+    #             planning_range *= 0.8  # Shrink distance
+    #         # Fallback: return current position (safe but not moving)
+    #         print("[crop_local_goal] Failed to find valid goal in map, fallback to current pos")
+    #         goal = start
+
 
     def plan_traj(self, start:np.ndarray, goal:np.ndarray):
         """
