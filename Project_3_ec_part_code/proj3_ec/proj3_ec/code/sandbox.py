@@ -206,11 +206,11 @@ world.draw(ax)
 ax.plot([start[0]], [start[1]], [start[2]], 'go', markersize=16, markeredgewidth=3, markerfacecolor='none')
 ax.plot( [goal[0]],  [goal[1]],  [goal[2]], 'ro', markersize=16, markeredgewidth=3, markerfacecolor='none')
 
-if hasattr(my_world_traj, 'local_goal_list'):
-    if my_world_traj.local_goal_list:
-        local_goals_array = np.array(my_world_traj.local_goal_list)
-        ax.plot(local_goals_array[:,0], local_goals_array[:,1], local_goals_array[:,2],
-                'ro', markersize=8, markerfacecolor='red', label='Local Goals')
+# if hasattr(my_world_traj, 'local_goal_list'):
+#     if my_world_traj.local_goal_list:
+#         local_goals_array = np.array(my_world_traj.local_goal_list)
+#         ax.plot(local_goals_array[:,0], local_goals_array[:,1], local_goals_array[:,2],
+#                 'ro', markersize=8, markerfacecolor='red', label='Local Goals')
 
 
 if hasattr(my_world_traj, 'path'):
@@ -227,11 +227,11 @@ else:
 # else:
 #     print("Have you set \'self.points\' in WorldTraj.__init__?")
 
-if hasattr(my_world_traj, 'waypoints_list'):
-    if my_world_traj.waypoints_list:
-        for waypoints in my_world_traj.waypoints_list:
-            if waypoints is not None and len(waypoints) > 0:
-                world.draw_points(ax, waypoints, color='orange', markersize=6)
+# if hasattr(my_world_traj, 'waypoints_list'):
+#     if my_world_traj.waypoints_list:
+#         for waypoints in my_world_traj.waypoints_list:
+#             if waypoints is not None and len(waypoints) > 0:
+#                 world.draw_points(ax, waypoints, color='orange', markersize=6)
 
 
 
@@ -245,8 +245,9 @@ ax.legend(handles=[
     Line2D([], [], color='red', linewidth=1, label='Dense A* Path'),
     # Line2D([], [], color='purple', linestyle='', marker='.', markersize=8, label='Sparse Waypoints'),
     Line2D([], [], color='black', linewidth=2, label='Trajectory'),
-    Line2D([], [], color='red', linestyle='', marker='o', markersize=10, label='Local Goal'),
-    Line2D([], [], color='orange', linestyle='', marker='.', markersize=6, label='Sparse Waypoints (each local replanning)')],
+    # Line2D([], [], color='red', linestyle='', marker='o', markersize=10, label='Local Goal'),
+    # Line2D([], [], color='orange', linestyle='', marker='.', markersize=6, label='Sparse Waypoints (each local replanning)'
+    ],
     loc='upper right')
 
 

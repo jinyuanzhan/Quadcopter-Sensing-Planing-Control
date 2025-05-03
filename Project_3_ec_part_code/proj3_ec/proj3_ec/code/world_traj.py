@@ -136,7 +136,7 @@ class WorldTraj(object):
         # do not replan
         if self.replan_num < 20:
             if not need_replan:
-                print("No need for replanning, the check_t is : ", imminent_collision_time)
+                # print("No need for replanning, the check_t is : ", imminent_collision_time)
                 return 
         self.replan_num = 0
 
